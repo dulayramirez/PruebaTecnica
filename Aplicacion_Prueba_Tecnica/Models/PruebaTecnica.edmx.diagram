@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="cebbfb1816e44fb6b20a336549b3a867" Name="Diagram1">
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.CLIENTE" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.CONTACTO" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.CUENTA" Width="1.5" PointX="8.25" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.NOTA_CREDITO_DEBITO" Width="1.5" PointX="10.5" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.TIPO_CONDICION" Width="1.5" PointX="8.25" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.TIPO_CONTACTO" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.TIPO_CUENTA" Width="1.5" PointX="6" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.TIPO_DOCUMENTO" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRUEBA_TECNICAModel.TIPO_ESTADO" Width="1.5" PointX="6" PointY="7.875" IsExpanded="true" />
+        <AssociationConnector Association="PRUEBA_TECNICAModel.FK__CLIENTE__ID_TIPO__412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEBA_TECNICAModel.FK__CONTACTO__ID_CLI__440B1D61" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEBA_TECNICAModel.FK_CUENTA_CLIENTE" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEBA_TECNICAModel.FK__CONTACTO__ID_TIP__44FF419A" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEBA_TECNICAModel.FK__NOTA_CRED__ID_CU__4CA06362" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEBA_TECNICAModel.FK_CUENTA_TIPO_CUENTA" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEBA_TECNICAModel.FK_CUENTA_TIPO_ESTADO1" ManuallyRouted="false" />
+        <AssociationConnector Association="PRUEBA_TECNICAModel.FK_NOTA_CREDITO_DEBITO_TIPO_CONDICION1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

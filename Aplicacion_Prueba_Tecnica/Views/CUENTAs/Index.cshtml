@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Aplicacion_Prueba_Tecnica.Models.CUENTA>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>CUENTAS</h2>
+
+<p>
+    @Html.ActionLink("Adicionar Cuenta", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NUMERO_CUENTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CREDITO_LIMITE)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_APERTURA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOMBRES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_CUENTA.DESCRIPCION_TIPO_CUENTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_ESTADO.DESCRIPCION_TIPO_ESTADO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NUMERO_CUENTA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CREDITO_LIMITE)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_APERTURA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLIENTE.NOMBRES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_CUENTA.DESCRIPCION_TIPO_CUENTA)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_ESTADO.DESCRIPCION_TIPO_ESTADO)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_CUENTA }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID_CUENTA }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_CUENTA })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Volver al Inicio", "Index", "CLIENTEs")
+</div>

@@ -1,0 +1,49 @@
+﻿@model Aplicacion_Prueba_Tecnica.Models.CONTACTO
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar Contacto</h2>
+
+<h3>¿Está seguro que desea eliminar el Contacto?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VALOR_CONTACTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VALOR_CONTACTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOMBRES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.NOMBRES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_CONTACTO.DESCRIPCION_TIPO_CONTACTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_CONTACTO.DESCRIPCION_TIPO_CONTACTO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("Volver a lista de contactos", "Index")
+        </div>
+    }
+</div>

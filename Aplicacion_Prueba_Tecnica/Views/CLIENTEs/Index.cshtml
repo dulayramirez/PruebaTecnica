@@ -1,0 +1,66 @@
+﻿@model IEnumerable<Aplicacion_Prueba_Tecnica.Models.CLIENTE>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Prueba Técnica</h2>
+<h2>Clientes</h2>
+<p>
+    @Html.ActionLink("Adicionar Cliente", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.NOMBRES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.APELLIDOS)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_NACIMIENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NUMERO_DOCUMENTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_DOCUMENTO.DESCRIPCION_TIPO_DOCUMENTO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.NOMBRES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.APELLIDOS)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FECHA_NACIMIENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NUMERO_DOCUMENTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_DOCUMENTO.DESCRIPCION_TIPO_DOCUMENTO)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_CLIENTE }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID_CLIENTE }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_CLIENTE })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Contactos", "Index", "CONTACTO") |
+
+    @Html.ActionLink("Cuentas", "Index", "CUENTAs") |
+
+    @Html.ActionLink("Notas crédito y débito", "Index", "NOTA_CREDITO_DEBITO")
+</div>

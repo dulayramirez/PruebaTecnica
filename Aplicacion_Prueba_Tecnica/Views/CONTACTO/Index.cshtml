@@ -1,0 +1,50 @@
+﻿@model IEnumerable<Aplicacion_Prueba_Tecnica.Models.CONTACTO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Contactos</h2>
+
+<p>
+    @Html.ActionLink("Adicionar contacto", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.VALOR_CONTACTO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOMBRES)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_CONTACTO.DESCRIPCION_TIPO_CONTACTO)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.VALOR_CONTACTO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CLIENTE.NOMBRES)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TIPO_CONTACTO.DESCRIPCION_TIPO_CONTACTO)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id=item.ID_CONTACTO }) |
+            @Html.ActionLink("Detalles", "Details", new { id=item.ID_CONTACTO }) |
+            @Html.ActionLink("Eliminar", "Delete", new { id=item.ID_CONTACTO })
+        </td>
+    </tr>
+}
+
+</table>
+
+<div>
+    @Html.ActionLink("Volver al Inicio", "Index", "CLIENTEs")
+</div>

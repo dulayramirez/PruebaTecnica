@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Aplicacion_Prueba_Tecnica.Models.NOTA_CREDITO_DEBITO>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Notas crédito y débito</h2>
+
+<p>
+    @Html.ActionLink("Adicionar nota crédito o débito", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FECHA_REGISTRO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VALOR_NOTA_CREDITO_DEBITO)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CUENTA.ID_CUENTA)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TIPO_CONDICION.DESCRIPCION_TIPO_CONDICION)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FECHA_REGISTRO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VALOR_NOTA_CREDITO_DEBITO)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CUENTA.ID_CUENTA)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TIPO_CONDICION.DESCRIPCION_TIPO_CONDICION)
+            </td>
+            <td>
+                @Html.ActionLink("Editar", "Edit", new { id = item.ID_NOTA_CREDITO_DEBITO }) |
+                @Html.ActionLink("Detalles", "Details", new { id = item.ID_NOTA_CREDITO_DEBITO }) |
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.ID_NOTA_CREDITO_DEBITO })
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div>
+    @Html.ActionLink("Volver al Inicio", "Index", "CLIENTEs")
+</div>

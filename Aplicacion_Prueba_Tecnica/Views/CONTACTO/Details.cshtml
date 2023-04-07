@@ -1,0 +1,43 @@
+﻿@model Aplicacion_Prueba_Tecnica.Models.CONTACTO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles del Contacto</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.VALOR_CONTACTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VALOR_CONTACTO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOMBRES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.NOMBRES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_CONTACTO.DESCRIPCION_TIPO_CONTACTO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_CONTACTO.DESCRIPCION_TIPO_CONTACTO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_CONTACTO }) |
+    @Html.ActionLink("Volver a la lista de contactos", "Index")
+</p>

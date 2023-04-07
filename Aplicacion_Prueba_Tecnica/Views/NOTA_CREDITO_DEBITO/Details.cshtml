@@ -1,0 +1,51 @@
+﻿@model Aplicacion_Prueba_Tecnica.Models.NOTA_CREDITO_DEBITO
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detalles notas crédito y débito</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_REGISTRO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_REGISTRO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VALOR_NOTA_CREDITO_DEBITO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VALOR_NOTA_CREDITO_DEBITO)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CUENTA.ID_CUENTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CUENTA.ID_CUENTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_CONDICION.DESCRIPCION_TIPO_CONDICION)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_CONDICION.DESCRIPCION_TIPO_CONDICION)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_NOTA_CREDITO_DEBITO }) |
+    @Html.ActionLink("Volver a la lista de notas", "Index")
+</p>

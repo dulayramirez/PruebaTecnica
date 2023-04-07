@@ -1,0 +1,67 @@
+﻿@model Aplicacion_Prueba_Tecnica.Models.CUENTA
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Detailles</h2>
+
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NUMERO_CUENTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUMERO_CUENTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CREDITO_LIMITE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CREDITO_LIMITE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_APERTURA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_APERTURA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOMBRES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.NOMBRES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_CUENTA.DESCRIPCION_TIPO_CUENTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_CUENTA.DESCRIPCION_TIPO_CUENTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_ESTADO.DESCRIPCION_TIPO_ESTADO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_ESTADO.DESCRIPCION_TIPO_ESTADO)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Editar", "Edit", new { id = Model.ID_CUENTA }) |
+    @Html.ActionLink("Volver a la lista de las cuentas", "Index")
+</p>

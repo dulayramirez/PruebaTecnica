@@ -1,0 +1,73 @@
+﻿@model Aplicacion_Prueba_Tecnica.Models.CUENTA
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Eliminar</h2>
+
+<h3>¿Está seguro que desea eliminar la Cuenta?</h3>
+<div>
+    <h4></h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NUMERO_CUENTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NUMERO_CUENTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CREDITO_LIMITE)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CREDITO_LIMITE)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.FECHA_APERTURA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FECHA_APERTURA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.CLIENTE.NOMBRES)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CLIENTE.NOMBRES)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_CUENTA.DESCRIPCION_TIPO_CUENTA)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_CUENTA.DESCRIPCION_TIPO_CUENTA)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TIPO_ESTADO.DESCRIPCION_TIPO_ESTADO)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TIPO_ESTADO.DESCRIPCION_TIPO_ESTADO)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Eliminar" class="btn btn-default" /> |
+            @Html.ActionLink("volver a la lista de cuentas", "Index")
+        </div>
+    }
+</div>

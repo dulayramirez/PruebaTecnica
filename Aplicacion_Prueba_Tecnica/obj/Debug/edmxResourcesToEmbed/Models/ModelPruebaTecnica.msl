@@ -1,0 +1,104 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="PRUEBA_TECNICAModelStoreContainer" CdmEntityContainer="PRUEBA_TECNICAEntities">
+    <EntitySetMapping Name="CLIENTE">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.CLIENTE">
+        <MappingFragment StoreEntitySet="CLIENTE">
+          <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+          <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+          <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+          <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+          <ScalarProperty Name="ID_TIPO_DOCUMENTO" ColumnName="ID_TIPO_DOCUMENTO" />
+          <ScalarProperty Name="NUMERO_DOCUMENTO" ColumnName="NUMERO_DOCUMENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CONTACTO">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.CONTACTO">
+        <MappingFragment StoreEntitySet="CONTACTO">
+          <ScalarProperty Name="ID_CONTACTO" ColumnName="ID_CONTACTO" />
+          <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+          <ScalarProperty Name="ID_TIPO_CONTACTO" ColumnName="ID_TIPO_CONTACTO" />
+          <ScalarProperty Name="VALOR_CONTACTO" ColumnName="VALOR_CONTACTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CUENTA">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.CUENTA">
+        <MappingFragment StoreEntitySet="CUENTA">
+          <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
+          <ScalarProperty Name="NUMERO_CUENTA" ColumnName="NUMERO_CUENTA" />
+          <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+          <ScalarProperty Name="ID_TIPO_CUENTA" ColumnName="ID_TIPO_CUENTA" />
+          <ScalarProperty Name="CREDITO_LIMITE" ColumnName="CREDITO_LIMITE" />
+          <ScalarProperty Name="FECHA_APERTURA" ColumnName="FECHA_APERTURA" />
+          <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NOTA_CREDITO_DEBITO">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.NOTA_CREDITO_DEBITO">
+        <MappingFragment StoreEntitySet="NOTA_CREDITO_DEBITO">
+          <ScalarProperty Name="ID_NOTA_CREDITO_DEBITO" ColumnName="ID_NOTA_CREDITO_DEBITO" />
+          <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
+          <ScalarProperty Name="ES_NOTA_CREDITO" ColumnName="ES_NOTA_CREDITO" />
+          <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+          <ScalarProperty Name="VALOR_NOTA_CREDITO_DEBITO" ColumnName="VALOR_NOTA_CREDITO_DEBITO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_CONDICION">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_CONDICION">
+        <MappingFragment StoreEntitySet="TIPO_CONDICION">
+          <ScalarProperty Name="ID_TIPO_CONDICION" ColumnName="ID_TIPO_CONDICION" />
+          <ScalarProperty Name="DESCRIPCION_TIPO_CONDICION" ColumnName="DESCRIPCION_TIPO_CONDICION" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_CONTACTO">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_CONTACTO">
+        <MappingFragment StoreEntitySet="TIPO_CONTACTO">
+          <ScalarProperty Name="ID_TIPO_CONTACTO" ColumnName="ID_TIPO_CONTACTO" />
+          <ScalarProperty Name="DESCRIPCION_TIPO_CONTACTO" ColumnName="DESCRIPCION_TIPO_CONTACTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_CUENTA">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_CUENTA">
+        <MappingFragment StoreEntitySet="TIPO_CUENTA">
+          <ScalarProperty Name="ID_TIPO_CUENTA" ColumnName="ID_TIPO_CUENTA" />
+          <ScalarProperty Name="DESCRIPCION_TIPO_CUENTA" ColumnName="DESCRIPCION_TIPO_CUENTA" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_DOCUMENTO">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_DOCUMENTO">
+        <MappingFragment StoreEntitySet="TIPO_DOCUMENTO">
+          <ScalarProperty Name="ID_TIPO_DOCUMENTO" ColumnName="ID_TIPO_DOCUMENTO" />
+          <ScalarProperty Name="DESCRIPCION_TIPO_DOCUMENTO" ColumnName="DESCRIPCION_TIPO_DOCUMENTO" />
+          <ScalarProperty Name="SIGLA_TIPO_DOCUMENTO" ColumnName="SIGLA_TIPO_DOCUMENTO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TIPO_ESTADO">
+      <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_ESTADO">
+        <MappingFragment StoreEntitySet="TIPO_ESTADO">
+          <ScalarProperty Name="ID_TIPO_ESTADO" ColumnName="ID_TIPO_ESTADO" />
+          <ScalarProperty Name="DESCRIPCION_TIPO_ESTADO" ColumnName="DESCRIPCION_TIPO_ESTADO" />
+          <ScalarProperty Name="SIGLA_TIPO_ESTADO" ColumnName="SIGLA_TIPO_ESTADO" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

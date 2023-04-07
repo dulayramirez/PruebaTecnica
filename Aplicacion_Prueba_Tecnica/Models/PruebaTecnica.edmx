@@ -1,0 +1,615 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="PRUEBA_TECNICAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NOMBRES" Type="varchar" MaxLength="300" />
+          <Property Name="APELLIDOS" Type="varchar" MaxLength="300" />
+          <Property Name="FECHA_NACIMIENTO" Type="datetime" />
+          <Property Name="ID_TIPO_DOCUMENTO" Type="int" />
+          <Property Name="NUMERO_DOCUMENTO" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="CONTACTO">
+          <Key>
+            <PropertyRef Name="ID_CONTACTO" />
+          </Key>
+          <Property Name="ID_CONTACTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CLIENTE" Type="int" />
+          <Property Name="ID_TIPO_CONTACTO" Type="int" />
+          <Property Name="VALOR_CONTACTO" Type="varchar" MaxLength="600" />
+        </EntityType>
+        <EntityType Name="CUENTA">
+          <Key>
+            <PropertyRef Name="ID_CUENTA" />
+          </Key>
+          <Property Name="ID_CUENTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NUMERO_CUENTA" Type="bigint" />
+          <Property Name="ID_CLIENTE" Type="int" />
+          <Property Name="ID_TIPO_CUENTA" Type="int" />
+          <Property Name="CREDITO_LIMITE" Type="bigint" />
+          <Property Name="FECHA_APERTURA" Type="datetime" />
+          <Property Name="ID_ESTADO" Type="int" />
+        </EntityType>
+        <EntityType Name="NOTA_CREDITO_DEBITO">
+          <Key>
+            <PropertyRef Name="ID_NOTA_CREDITO_DEBITO" />
+          </Key>
+          <Property Name="ID_NOTA_CREDITO_DEBITO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_CUENTA" Type="int" />
+          <Property Name="ES_NOTA_CREDITO" Type="int" />
+          <Property Name="FECHA_REGISTRO" Type="datetime" />
+          <Property Name="VALOR_NOTA_CREDITO_DEBITO" Type="bigint" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="TIPO_CONDICION">
+          <Key>
+            <PropertyRef Name="ID_TIPO_CONDICION" />
+          </Key>
+          <Property Name="ID_TIPO_CONDICION" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRIPCION_TIPO_CONDICION" Type="varchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="TIPO_CONTACTO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_CONTACTO" />
+          </Key>
+          <Property Name="ID_TIPO_CONTACTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRIPCION_TIPO_CONTACTO" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TIPO_CUENTA">
+          <Key>
+            <PropertyRef Name="ID_TIPO_CUENTA" />
+          </Key>
+          <Property Name="ID_TIPO_CUENTA" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRIPCION_TIPO_CUENTA" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TIPO_DOCUMENTO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_DOCUMENTO" />
+          </Key>
+          <Property Name="ID_TIPO_DOCUMENTO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRIPCION_TIPO_DOCUMENTO" Type="varchar" MaxLength="100" />
+          <Property Name="SIGLA_TIPO_DOCUMENTO" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="TIPO_ESTADO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_ESTADO" />
+          </Key>
+          <Property Name="ID_TIPO_ESTADO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DESCRIPCION_TIPO_ESTADO" Type="varchar" MaxLength="50" />
+          <Property Name="SIGLA_TIPO_ESTADO" Type="varchar" MaxLength="6" />
+        </EntityType>
+        <Association Name="FK__CLIENTE__ID_TIPO__412EB0B6">
+          <End Role="TIPO_DOCUMENTO" Type="Self.TIPO_DOCUMENTO" Multiplicity="0..1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_DOCUMENTO">
+              <PropertyRef Name="ID_TIPO_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="ID_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONTACTO__ID_CLI__440B1D61">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="CONTACTO">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONTACTO__ID_TIP__44FF419A">
+          <End Role="TIPO_CONTACTO" Type="Self.TIPO_CONTACTO" Multiplicity="0..1" />
+          <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_CONTACTO">
+              <PropertyRef Name="ID_TIPO_CONTACTO" />
+            </Principal>
+            <Dependent Role="CONTACTO">
+              <PropertyRef Name="ID_TIPO_CONTACTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NOTA_CRED__ID_CU__4CA06362">
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="0..1" />
+          <End Role="NOTA_CREDITO_DEBITO" Type="Self.NOTA_CREDITO_DEBITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Principal>
+            <Dependent Role="NOTA_CREDITO_DEBITO">
+              <PropertyRef Name="ID_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTA_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="CUENTA">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTA_TIPO_CUENTA">
+          <End Role="TIPO_CUENTA" Type="Self.TIPO_CUENTA" Multiplicity="0..1" />
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_CUENTA">
+              <PropertyRef Name="ID_TIPO_CUENTA" />
+            </Principal>
+            <Dependent Role="CUENTA">
+              <PropertyRef Name="ID_TIPO_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTA_TIPO_ESTADO1">
+          <End Role="TIPO_ESTADO" Type="Self.TIPO_ESTADO" Multiplicity="0..1" />
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_ESTADO">
+              <PropertyRef Name="ID_TIPO_ESTADO" />
+            </Principal>
+            <Dependent Role="CUENTA">
+              <PropertyRef Name="ID_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTA_CREDITO_DEBITO_TIPO_CONDICION1">
+          <End Role="TIPO_CONDICION" Type="Self.TIPO_CONDICION" Multiplicity="0..1" />
+          <End Role="NOTA_CREDITO_DEBITO" Type="Self.NOTA_CREDITO_DEBITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_CONDICION">
+              <PropertyRef Name="ID_TIPO_CONDICION" />
+            </Principal>
+            <Dependent Role="NOTA_CREDITO_DEBITO">
+              <PropertyRef Name="ES_NOTA_CREDITO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRUEBA_TECNICAModelStoreContainer">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CUENTA" EntityType="Self.CUENTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NOTA_CREDITO_DEBITO" EntityType="Self.NOTA_CREDITO_DEBITO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_CONDICION" EntityType="Self.TIPO_CONDICION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_CONTACTO" EntityType="Self.TIPO_CONTACTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_CUENTA" EntityType="Self.TIPO_CUENTA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_DOCUMENTO" EntityType="Self.TIPO_DOCUMENTO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TIPO_ESTADO" EntityType="Self.TIPO_ESTADO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__CLIENTE__ID_TIPO__412EB0B6" Association="Self.FK__CLIENTE__ID_TIPO__412EB0B6">
+            <End Role="TIPO_DOCUMENTO" EntitySet="TIPO_DOCUMENTO" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONTACTO__ID_CLI__440B1D61" Association="Self.FK__CONTACTO__ID_CLI__440B1D61">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CONTACTO" EntitySet="CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONTACTO__ID_TIP__44FF419A" Association="Self.FK__CONTACTO__ID_TIP__44FF419A">
+            <End Role="TIPO_CONTACTO" EntitySet="TIPO_CONTACTO" />
+            <End Role="CONTACTO" EntitySet="CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTA_CRED__ID_CU__4CA06362" Association="Self.FK__NOTA_CRED__ID_CU__4CA06362">
+            <End Role="CUENTA" EntitySet="CUENTA" />
+            <End Role="NOTA_CREDITO_DEBITO" EntitySet="NOTA_CREDITO_DEBITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTA_CLIENTE" Association="Self.FK_CUENTA_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CUENTA" EntitySet="CUENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTA_TIPO_CUENTA" Association="Self.FK_CUENTA_TIPO_CUENTA">
+            <End Role="TIPO_CUENTA" EntitySet="TIPO_CUENTA" />
+            <End Role="CUENTA" EntitySet="CUENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTA_TIPO_ESTADO1" Association="Self.FK_CUENTA_TIPO_ESTADO1">
+            <End Role="TIPO_ESTADO" EntitySet="TIPO_ESTADO" />
+            <End Role="CUENTA" EntitySet="CUENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTA_CREDITO_DEBITO_TIPO_CONDICION1" Association="Self.FK_NOTA_CREDITO_DEBITO_TIPO_CONDICION1">
+            <End Role="TIPO_CONDICION" EntitySet="TIPO_CONDICION" />
+            <End Role="NOTA_CREDITO_DEBITO" EntitySet="NOTA_CREDITO_DEBITO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PRUEBA_TECNICAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CLIENTE">
+          <Key>
+            <PropertyRef Name="ID_CLIENTE" />
+          </Key>
+          <Property Name="ID_CLIENTE" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NOMBRES" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="APELLIDOS" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="FECHA_NACIMIENTO" Type="DateTime" Precision="3" />
+          <Property Name="ID_TIPO_DOCUMENTO" Type="Int32" />
+          <Property Name="NUMERO_DOCUMENTO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TIPO_DOCUMENTO" Relationship="Self.FK__CLIENTE__ID_TIPO__412EB0B6" FromRole="CLIENTE" ToRole="TIPO_DOCUMENTO" />
+          <NavigationProperty Name="CONTACTO" Relationship="Self.FK__CONTACTO__ID_CLI__440B1D61" FromRole="CLIENTE" ToRole="CONTACTO" />
+          <NavigationProperty Name="CUENTA" Relationship="Self.FK_CUENTA_CLIENTE" FromRole="CLIENTE" ToRole="CUENTA" />
+        </EntityType>
+        <EntityType Name="CONTACTO">
+          <Key>
+            <PropertyRef Name="ID_CONTACTO" />
+          </Key>
+          <Property Name="ID_CONTACTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CLIENTE" Type="Int32" />
+          <Property Name="ID_TIPO_CONTACTO" Type="Int32" />
+          <Property Name="VALOR_CONTACTO" Type="String" MaxLength="600" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__CONTACTO__ID_CLI__440B1D61" FromRole="CONTACTO" ToRole="CLIENTE" />
+          <NavigationProperty Name="TIPO_CONTACTO" Relationship="Self.FK__CONTACTO__ID_TIP__44FF419A" FromRole="CONTACTO" ToRole="TIPO_CONTACTO" />
+        </EntityType>
+        <EntityType Name="CUENTA">
+          <Key>
+            <PropertyRef Name="ID_CUENTA" />
+          </Key>
+          <Property Name="ID_CUENTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NUMERO_CUENTA" Type="Int64" />
+          <Property Name="ID_CLIENTE" Type="Int32" />
+          <Property Name="ID_TIPO_CUENTA" Type="Int32" />
+          <Property Name="CREDITO_LIMITE" Type="Int64" />
+          <Property Name="FECHA_APERTURA" Type="DateTime" Precision="3" />
+          <Property Name="ID_ESTADO" Type="Int32" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK_CUENTA_CLIENTE" FromRole="CUENTA" ToRole="CLIENTE" />
+          <NavigationProperty Name="NOTA_CREDITO_DEBITO" Relationship="Self.FK__NOTA_CRED__ID_CU__4CA06362" FromRole="CUENTA" ToRole="NOTA_CREDITO_DEBITO" />
+          <NavigationProperty Name="TIPO_CUENTA" Relationship="Self.FK_CUENTA_TIPO_CUENTA" FromRole="CUENTA" ToRole="TIPO_CUENTA" />
+          <NavigationProperty Name="TIPO_ESTADO" Relationship="Self.FK_CUENTA_TIPO_ESTADO1" FromRole="CUENTA" ToRole="TIPO_ESTADO" />
+        </EntityType>
+        <EntityType Name="NOTA_CREDITO_DEBITO">
+          <Key>
+            <PropertyRef Name="ID_NOTA_CREDITO_DEBITO" />
+          </Key>
+          <Property Name="ID_NOTA_CREDITO_DEBITO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_CUENTA" Type="Int32" />
+          <Property Name="ES_NOTA_CREDITO" Type="Int32" />
+          <Property Name="FECHA_REGISTRO" Type="DateTime" Precision="3" />
+          <Property Name="VALOR_NOTA_CREDITO_DEBITO" Type="Int64" />
+          <NavigationProperty Name="CUENTA" Relationship="Self.FK__NOTA_CRED__ID_CU__4CA06362" FromRole="NOTA_CREDITO_DEBITO" ToRole="CUENTA" />
+          <NavigationProperty Name="TIPO_CONDICION" Relationship="Self.FK_NOTA_CREDITO_DEBITO_TIPO_CONDICION1" FromRole="NOTA_CREDITO_DEBITO" ToRole="TIPO_CONDICION" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="TIPO_CONDICION">
+          <Key>
+            <PropertyRef Name="ID_TIPO_CONDICION" />
+          </Key>
+          <Property Name="ID_TIPO_CONDICION" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRIPCION_TIPO_CONDICION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NOTA_CREDITO_DEBITO" Relationship="Self.FK_NOTA_CREDITO_DEBITO_TIPO_CONDICION1" FromRole="TIPO_CONDICION" ToRole="NOTA_CREDITO_DEBITO" />
+        </EntityType>
+        <EntityType Name="TIPO_CONTACTO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_CONTACTO" />
+          </Key>
+          <Property Name="ID_TIPO_CONTACTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRIPCION_TIPO_CONTACTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CONTACTO" Relationship="Self.FK__CONTACTO__ID_TIP__44FF419A" FromRole="TIPO_CONTACTO" ToRole="CONTACTO" />
+        </EntityType>
+        <EntityType Name="TIPO_CUENTA">
+          <Key>
+            <PropertyRef Name="ID_TIPO_CUENTA" />
+          </Key>
+          <Property Name="ID_TIPO_CUENTA" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRIPCION_TIPO_CUENTA" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CUENTA" Relationship="Self.FK_CUENTA_TIPO_CUENTA" FromRole="TIPO_CUENTA" ToRole="CUENTA" />
+        </EntityType>
+        <EntityType Name="TIPO_DOCUMENTO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_DOCUMENTO" />
+          </Key>
+          <Property Name="ID_TIPO_DOCUMENTO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRIPCION_TIPO_DOCUMENTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="SIGLA_TIPO_DOCUMENTO" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CLIENTE" Relationship="Self.FK__CLIENTE__ID_TIPO__412EB0B6" FromRole="TIPO_DOCUMENTO" ToRole="CLIENTE" />
+        </EntityType>
+        <EntityType Name="TIPO_ESTADO">
+          <Key>
+            <PropertyRef Name="ID_TIPO_ESTADO" />
+          </Key>
+          <Property Name="ID_TIPO_ESTADO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DESCRIPCION_TIPO_ESTADO" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="SIGLA_TIPO_ESTADO" Type="String" MaxLength="6" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CUENTA" Relationship="Self.FK_CUENTA_TIPO_ESTADO1" FromRole="TIPO_ESTADO" ToRole="CUENTA" />
+        </EntityType>
+        <Association Name="FK__CLIENTE__ID_TIPO__412EB0B6">
+          <End Role="TIPO_DOCUMENTO" Type="Self.TIPO_DOCUMENTO" Multiplicity="0..1" />
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_DOCUMENTO">
+              <PropertyRef Name="ID_TIPO_DOCUMENTO" />
+            </Principal>
+            <Dependent Role="CLIENTE">
+              <PropertyRef Name="ID_TIPO_DOCUMENTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONTACTO__ID_CLI__440B1D61">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="CONTACTO">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTA_CLIENTE">
+          <End Role="CLIENTE" Type="Self.CLIENTE" Multiplicity="0..1" />
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CLIENTE">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Principal>
+            <Dependent Role="CUENTA">
+              <PropertyRef Name="ID_CLIENTE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CONTACTO__ID_TIP__44FF419A">
+          <End Role="TIPO_CONTACTO" Type="Self.TIPO_CONTACTO" Multiplicity="0..1" />
+          <End Role="CONTACTO" Type="Self.CONTACTO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_CONTACTO">
+              <PropertyRef Name="ID_TIPO_CONTACTO" />
+            </Principal>
+            <Dependent Role="CONTACTO">
+              <PropertyRef Name="ID_TIPO_CONTACTO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__NOTA_CRED__ID_CU__4CA06362">
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="0..1" />
+          <End Role="NOTA_CREDITO_DEBITO" Type="Self.NOTA_CREDITO_DEBITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CUENTA">
+              <PropertyRef Name="ID_CUENTA" />
+            </Principal>
+            <Dependent Role="NOTA_CREDITO_DEBITO">
+              <PropertyRef Name="ID_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTA_TIPO_CUENTA">
+          <End Role="TIPO_CUENTA" Type="Self.TIPO_CUENTA" Multiplicity="0..1" />
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_CUENTA">
+              <PropertyRef Name="ID_TIPO_CUENTA" />
+            </Principal>
+            <Dependent Role="CUENTA">
+              <PropertyRef Name="ID_TIPO_CUENTA" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CUENTA_TIPO_ESTADO1">
+          <End Role="TIPO_ESTADO" Type="Self.TIPO_ESTADO" Multiplicity="0..1" />
+          <End Role="CUENTA" Type="Self.CUENTA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_ESTADO">
+              <PropertyRef Name="ID_TIPO_ESTADO" />
+            </Principal>
+            <Dependent Role="CUENTA">
+              <PropertyRef Name="ID_ESTADO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NOTA_CREDITO_DEBITO_TIPO_CONDICION1">
+          <End Role="TIPO_CONDICION" Type="Self.TIPO_CONDICION" Multiplicity="0..1" />
+          <End Role="NOTA_CREDITO_DEBITO" Type="Self.NOTA_CREDITO_DEBITO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TIPO_CONDICION">
+              <PropertyRef Name="ID_TIPO_CONDICION" />
+            </Principal>
+            <Dependent Role="NOTA_CREDITO_DEBITO">
+              <PropertyRef Name="ES_NOTA_CREDITO" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="PRUEBA_TECNICAEntities2" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CLIENTE" EntityType="Self.CLIENTE" />
+          <EntitySet Name="CONTACTO" EntityType="Self.CONTACTO" />
+          <EntitySet Name="CUENTA" EntityType="Self.CUENTA" />
+          <EntitySet Name="NOTA_CREDITO_DEBITO" EntityType="Self.NOTA_CREDITO_DEBITO" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="TIPO_CONDICION" EntityType="Self.TIPO_CONDICION" />
+          <EntitySet Name="TIPO_CONTACTO" EntityType="Self.TIPO_CONTACTO" />
+          <EntitySet Name="TIPO_CUENTA" EntityType="Self.TIPO_CUENTA" />
+          <EntitySet Name="TIPO_DOCUMENTO" EntityType="Self.TIPO_DOCUMENTO" />
+          <EntitySet Name="TIPO_ESTADO" EntityType="Self.TIPO_ESTADO" />
+          <AssociationSet Name="FK__CLIENTE__ID_TIPO__412EB0B6" Association="Self.FK__CLIENTE__ID_TIPO__412EB0B6">
+            <End Role="TIPO_DOCUMENTO" EntitySet="TIPO_DOCUMENTO" />
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONTACTO__ID_CLI__440B1D61" Association="Self.FK__CONTACTO__ID_CLI__440B1D61">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CONTACTO" EntitySet="CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTA_CLIENTE" Association="Self.FK_CUENTA_CLIENTE">
+            <End Role="CLIENTE" EntitySet="CLIENTE" />
+            <End Role="CUENTA" EntitySet="CUENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CONTACTO__ID_TIP__44FF419A" Association="Self.FK__CONTACTO__ID_TIP__44FF419A">
+            <End Role="TIPO_CONTACTO" EntitySet="TIPO_CONTACTO" />
+            <End Role="CONTACTO" EntitySet="CONTACTO" />
+          </AssociationSet>
+          <AssociationSet Name="FK__NOTA_CRED__ID_CU__4CA06362" Association="Self.FK__NOTA_CRED__ID_CU__4CA06362">
+            <End Role="CUENTA" EntitySet="CUENTA" />
+            <End Role="NOTA_CREDITO_DEBITO" EntitySet="NOTA_CREDITO_DEBITO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTA_TIPO_CUENTA" Association="Self.FK_CUENTA_TIPO_CUENTA">
+            <End Role="TIPO_CUENTA" EntitySet="TIPO_CUENTA" />
+            <End Role="CUENTA" EntitySet="CUENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CUENTA_TIPO_ESTADO1" Association="Self.FK_CUENTA_TIPO_ESTADO1">
+            <End Role="TIPO_ESTADO" EntitySet="TIPO_ESTADO" />
+            <End Role="CUENTA" EntitySet="CUENTA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NOTA_CREDITO_DEBITO_TIPO_CONDICION1" Association="Self.FK_NOTA_CREDITO_DEBITO_TIPO_CONDICION1">
+            <End Role="TIPO_CONDICION" EntitySet="TIPO_CONDICION" />
+            <End Role="NOTA_CREDITO_DEBITO" EntitySet="NOTA_CREDITO_DEBITO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PRUEBA_TECNICAModelStoreContainer" CdmEntityContainer="PRUEBA_TECNICAEntities2">
+          <EntitySetMapping Name="CLIENTE">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.CLIENTE">
+              <MappingFragment StoreEntitySet="CLIENTE">
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="NOMBRES" ColumnName="NOMBRES" />
+                <ScalarProperty Name="APELLIDOS" ColumnName="APELLIDOS" />
+                <ScalarProperty Name="FECHA_NACIMIENTO" ColumnName="FECHA_NACIMIENTO" />
+                <ScalarProperty Name="ID_TIPO_DOCUMENTO" ColumnName="ID_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="NUMERO_DOCUMENTO" ColumnName="NUMERO_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CONTACTO">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.CONTACTO">
+              <MappingFragment StoreEntitySet="CONTACTO">
+                <ScalarProperty Name="ID_CONTACTO" ColumnName="ID_CONTACTO" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="ID_TIPO_CONTACTO" ColumnName="ID_TIPO_CONTACTO" />
+                <ScalarProperty Name="VALOR_CONTACTO" ColumnName="VALOR_CONTACTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CUENTA">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.CUENTA">
+              <MappingFragment StoreEntitySet="CUENTA">
+                <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
+                <ScalarProperty Name="NUMERO_CUENTA" ColumnName="NUMERO_CUENTA" />
+                <ScalarProperty Name="ID_CLIENTE" ColumnName="ID_CLIENTE" />
+                <ScalarProperty Name="ID_TIPO_CUENTA" ColumnName="ID_TIPO_CUENTA" />
+                <ScalarProperty Name="CREDITO_LIMITE" ColumnName="CREDITO_LIMITE" />
+                <ScalarProperty Name="FECHA_APERTURA" ColumnName="FECHA_APERTURA" />
+                <ScalarProperty Name="ID_ESTADO" ColumnName="ID_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NOTA_CREDITO_DEBITO">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.NOTA_CREDITO_DEBITO">
+              <MappingFragment StoreEntitySet="NOTA_CREDITO_DEBITO">
+                <ScalarProperty Name="ID_NOTA_CREDITO_DEBITO" ColumnName="ID_NOTA_CREDITO_DEBITO" />
+                <ScalarProperty Name="ID_CUENTA" ColumnName="ID_CUENTA" />
+                <ScalarProperty Name="ES_NOTA_CREDITO" ColumnName="ES_NOTA_CREDITO" />
+                <ScalarProperty Name="FECHA_REGISTRO" ColumnName="FECHA_REGISTRO" />
+                <ScalarProperty Name="VALOR_NOTA_CREDITO_DEBITO" ColumnName="VALOR_NOTA_CREDITO_DEBITO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_CONDICION">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_CONDICION">
+              <MappingFragment StoreEntitySet="TIPO_CONDICION">
+                <ScalarProperty Name="ID_TIPO_CONDICION" ColumnName="ID_TIPO_CONDICION" />
+                <ScalarProperty Name="DESCRIPCION_TIPO_CONDICION" ColumnName="DESCRIPCION_TIPO_CONDICION" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_CONTACTO">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_CONTACTO">
+              <MappingFragment StoreEntitySet="TIPO_CONTACTO">
+                <ScalarProperty Name="ID_TIPO_CONTACTO" ColumnName="ID_TIPO_CONTACTO" />
+                <ScalarProperty Name="DESCRIPCION_TIPO_CONTACTO" ColumnName="DESCRIPCION_TIPO_CONTACTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_CUENTA">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_CUENTA">
+              <MappingFragment StoreEntitySet="TIPO_CUENTA">
+                <ScalarProperty Name="ID_TIPO_CUENTA" ColumnName="ID_TIPO_CUENTA" />
+                <ScalarProperty Name="DESCRIPCION_TIPO_CUENTA" ColumnName="DESCRIPCION_TIPO_CUENTA" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_DOCUMENTO">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_DOCUMENTO">
+              <MappingFragment StoreEntitySet="TIPO_DOCUMENTO">
+                <ScalarProperty Name="ID_TIPO_DOCUMENTO" ColumnName="ID_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="DESCRIPCION_TIPO_DOCUMENTO" ColumnName="DESCRIPCION_TIPO_DOCUMENTO" />
+                <ScalarProperty Name="SIGLA_TIPO_DOCUMENTO" ColumnName="SIGLA_TIPO_DOCUMENTO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TIPO_ESTADO">
+            <EntityTypeMapping TypeName="PRUEBA_TECNICAModel.TIPO_ESTADO">
+              <MappingFragment StoreEntitySet="TIPO_ESTADO">
+                <ScalarProperty Name="ID_TIPO_ESTADO" ColumnName="ID_TIPO_ESTADO" />
+                <ScalarProperty Name="DESCRIPCION_TIPO_ESTADO" ColumnName="DESCRIPCION_TIPO_ESTADO" />
+                <ScalarProperty Name="SIGLA_TIPO_ESTADO" ColumnName="SIGLA_TIPO_ESTADO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
